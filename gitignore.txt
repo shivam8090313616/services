@@ -1,0 +1,39 @@
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+public_html/storage
+public_html/hot
+/public
+/resources
+app/Http/Controllers/Payment
+app/Http/Controllers/StripePayController.php
+app/Http/Controllers/Advertisers/AppPaymentPhonepeController.php
+app/Http/Controllers/Advertisers/AppPaymentAirpayController.php
+app/Http/Controllers/Advertisers/AppPaymentCoinQrController.php
+app/Http/Controllers/Advertisers/AppPaymentPhonepeController-old.php
+app/Http/Controllers/Advertisers/AppNowPaymentsController.php
+storage
+storage-old
+server.php
+storage/*.key
+.env
+.server.php
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
+composer.lock
+resources/views/stripe_lib
+resources/views/stripe-php
+resources/views/payment
