@@ -50,7 +50,12 @@ class UserPublisher
                 'code' => 403,
                 'msg' => 'Your Account is pending!'
             ]);
-            } else{
+            }else if($getuid->trash == 1){
+                return response()->json([
+                'code' => 403,
+                'msg' => 'Your Account is Removed!'
+            ]);
+            }  else{
                 return $next($request);
             }
           

@@ -69,6 +69,10 @@ class UserAdvertiser
                 return response()->json([
                     'code' => 403,
                     'msg' => 'Your Account is on hold!']);
+            }elseif ($getuid->trash == 1) {
+                return response()->json([
+                    'code' => 403,
+                    'msg' => 'Your Account is Removed!']);
             }else{
                 return $next($request);
             }
