@@ -102,7 +102,7 @@ class PubTransactionsAdminController extends Controller
 
     }
   
-  	public function transactionStatusUpdate (Request $request)
+    public function transactionStatusUpdate (Request $request)
     {
         $validator = Validator::make(
               $request->all(),
@@ -120,12 +120,13 @@ class PubTransactionsAdminController extends Controller
               $return['message'] = 'Validation error!';
               return json_encode($return);
         }
+        $uid = $request->uid;
         $txn_id = $request->txnid;
         $txnupdate = PubPayout::where('transaction_id', $txn_id)->first();
         $txnupdate->remark = $request->remark;
         $txnupdate->status = $request->status_type;
         if ($request->status_type == 1) {
-          $user = User::where('uid', $uid)->first();
+          $user = User::where('uid', $uid)->where('user_type','!=',1)->first();
           if ($user->referal_code != "" && $user->referalpmt_status == 0) {
             $url = "http://refprogramserv.7searchppc.in/api/add-transaction";
             $refData = [
@@ -150,7 +151,7 @@ class PubTransactionsAdminController extends Controller
     
             curl_close($curl);
           }
-          $user->referalpmt_status = 1;   
+          $user->referalpmt_status = 1;
           $user->update();
         }
       	$txnupdate->payout_transaction_id = $request->payout_transac_id ? $request->payout_transac_id : 'NULL';
